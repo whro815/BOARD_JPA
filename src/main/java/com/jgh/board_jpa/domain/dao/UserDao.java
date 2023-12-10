@@ -1,16 +1,25 @@
 package com.jgh.board_jpa.domain.dao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.*;
+import lombok.Getter;
 
+import lombok.Setter;
+
+@Table
+@Entity
+@Setter
+@Getter
 public class UserDao {
 
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @Column(name = "userSeqNo", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userSeqNo;
-    private String boardTitle;
+
+    private String username;
+
+    private String password;
+
 
 }

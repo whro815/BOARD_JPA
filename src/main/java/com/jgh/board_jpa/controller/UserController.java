@@ -13,6 +13,6 @@ public class UserController {
     @RequestMapping("/user/join")
     public String joinPage(Model model){
 
-        return "/view/join";
+        return "/view/user/join";
     }
 }
