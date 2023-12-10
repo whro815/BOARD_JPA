@@ -22,13 +22,13 @@ public class JpaRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        UserDao userDao = new UserDao();
+        /*UserDao userDao = new UserDao();
         userDao.setUsername("geahyun");
         userDao.setPassword("1234");
 
         logger.debug("통과");
         System.out.println("?????");
 
-        entityManager.persist(userDao);
+        entityManager.persist(userDao);*/
     }
 }

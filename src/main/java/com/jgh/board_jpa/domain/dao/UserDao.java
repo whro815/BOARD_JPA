@@ -8,8 +8,6 @@ import lombok.Setter;
 
 @Table
 @Entity
-@Setter
-@Getter
 public class UserDao {
 
     @Id
