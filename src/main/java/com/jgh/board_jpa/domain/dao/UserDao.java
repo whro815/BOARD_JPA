@@ -26,6 +26,4 @@ public class UserDao {
         this.password = password;
     }
 
-
-
 }
