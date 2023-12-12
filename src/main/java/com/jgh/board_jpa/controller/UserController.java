@@ -1,5 +1,6 @@
 package com.jgh.board_jpa.controller;
 
+import com.jgh.board_jpa.dto.user.UserDto;
 import com.jgh.board_jpa.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,12 @@ public class UserController {
 
     @RequestMapping("/user/join")
     public String joinPage(Model model){
+        return "/view/user/join";
+    }
 
+    @RequestMapping("/user/joinAction.do")
+    public String joinAction(Model model, UserDto userDto)throws Exception{
+        userService.userInsert(userDto);
         return "/view/user/join";
     }
 }

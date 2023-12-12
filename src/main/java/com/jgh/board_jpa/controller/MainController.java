@@ -5,10 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class BoardController {
+public class MainController {
 
-    @RequestMapping("/board/list")
-    public String joinPage(Model model){
-        return "/view/board/list";
+    @RequestMapping("/")
+    public String mainPage(Model model){
+        return "/view/main/main";
     }
 }
