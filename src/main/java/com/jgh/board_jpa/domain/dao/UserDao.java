@@ -4,6 +4,8 @@ package com.jgh.board_jpa.domain.dao;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity(name="user_dao")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -14,11 +16,14 @@ public class UserDao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userSeqNo;
 
-    @Column(name = "userName")
+    @Column(length = 30)
     private String username;
 
-    @Column(name = "password")
+    @Column(length = 40)
     private String password;
+
+    @Temporal(TemporalType.DATE)
+    private Date insertDt;
 
     @Builder
     public UserDao(String username, String password) {
