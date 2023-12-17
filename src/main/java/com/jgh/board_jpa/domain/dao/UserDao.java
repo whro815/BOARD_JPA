@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name="user_dao")
 @Getter
@@ -24,6 +25,9 @@ public class UserDao {
 
     @Temporal(TemporalType.DATE)
     private Date insertDt;
+
+    @OneToMany
+    private List<BoardDao> Boards;
 
     @Builder
     public UserDao(String username, String password) {
