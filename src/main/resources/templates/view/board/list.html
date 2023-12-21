@@ -21,7 +21,7 @@
         <tbody>
         <tr th:each="boardList: ${boardList}">
             <th scope="row" th:text="${boardList.id}"></th>
-            <td><a th:href="@{|/board/boardDetail/${boardList.id}|}" th:text="${boardList.boardTitle}"></a></td>
+            <td><a th:href="@{|/board/detail/${boardList.id}|}" th:text="${boardList.boardTitle}"></a></td>
             <td th:text="${boardList.boardWriter}"></td>
             <td th:text="*{#temporals.format(boardList.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
             <td th:text="${boardList.boardHits}"></td>
@@ -37,7 +37,7 @@
     <script>
         function insert_board_page(){
             // document.getElementById('joinForm').submit();
-            location.href = '/board/boardInsert';
+            location.href = '/board/insert';
         }
 
         const mainPage = () =>{

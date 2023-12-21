@@ -24,9 +24,9 @@ public class BoardController {
     /*
      * 게시판 목록 페이지
      * */
-    @GetMapping("/boardList")
+    @GetMapping("/list")
     public String boardListPage(Model model){
-        log.info("======boardList=====");
+        log.info("======list=====");
         List<BoardDto> boardDtoList = boardService.findAll();
         model.addAttribute("boardList", boardDtoList);
         return "view/board/list";
@@ -35,7 +35,7 @@ public class BoardController {
     /*
      * 게시판 등록 페이지
      * */
-    @GetMapping("/boardInsert")
+    @GetMapping("/insert")
     public String boardInsertPage(Model model){
         return "view/board/insert";
     }
@@ -43,18 +43,18 @@ public class BoardController {
     /*
      * 게시판 등록 액션
      * */
-    @PostMapping("/boardInsertAction.do")
+    @PostMapping("/insert")
     public String boardInsertAction(Model model,
                                     @ModelAttribute BoardDto boardDto){
         log.info("boardDto == "+ boardDto.ToEntity());
         boardService.save(boardDto);
-        return "redirect:" + "/board/boardList";
+        return "redirect:" + "/board/list";
     }
 
     /*
     * 게시판 상세 페이지
     * */
-    @GetMapping("/boardDetail/{id}")
+    @GetMapping("/detail/{id}")
     public String boardDetailPage(@PathVariable Long id, Model model){
 
         boardService.updateHits(id);
@@ -67,7 +67,7 @@ public class BoardController {
     /*
      * 게시판 수정 페이지
      * */
-    @GetMapping("/boardUpdate/{id}")
+    @GetMapping("/update/{id}")
     public String boardUpdatePage(@PathVariable Long id, Model model){
         BoardDto boardDto = boardService.findById(id);
         model.addAttribute("boardDto", boardDto);
@@ -77,21 +77,21 @@ public class BoardController {
     /*
      * 게시판 수정 액션
      * */
-    @PostMapping("/boardUpdate")
+    @PostMapping("/update")
     public String boardUpdateAction(@ModelAttribute BoardDto boardDto, Model model){
         boardService.update(boardDto);
         model.addAttribute("boardDto", boardDto);
-        return "redirect:"+ "/board/boardDetail/"+boardDto.getId();
+        return "redirect:"+ "/board/detail/"+boardDto.getId();
     }
 
 
     /*
      * 게시판 삭제 액션
      * */
-    @GetMapping("/boardDelete/{id}")
+    @GetMapping("/delete/{id}")
     public String boardDeleteAction(@PathVariable Long id, Model model){
         boardService.delete(id);
-        return "redirect:" + "/board/boardList";
+        return "redirect:" + "/board/list";
     }
 
 }

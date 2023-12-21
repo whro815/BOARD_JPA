@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <form id="boardForm" name="boardForm" action="/board/boardUpdate" method="post">
+    <form id="boardForm" name="boardForm" action="/board/update" method="post">
         <input type="hidden" id="id" name="id" th:value="${boardDto.id}">
         작성자 : <input type="text" id="boardWriter" name="boardWriter" th:value="${boardDto.boardWriter}"><br>
         게시판 비밀번호 : <input type="text" id="boardPass" name="boardPass"><br>
