@@ -1,18 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>detail 페이지</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 
-    <input class="btn btn-primary" type="button" value="수정 페이지" onclick="update_board_page();">
+<table>
+    <tr>
+        <th>id</th>
+        <td th:text="${boardDto.id}"></td>
+    </tr>
+    <tr>
+        <th>title</th>
+        <td th:text="${boardDto.boardTitle}"></td>
+    </tr>
+    <tr>
+        <th>writer</th>
+        <td th:text="${boardDto.boardWriter}"></td>
+    </tr>
+    <tr>
+        <th>date</th>
+        <td th:text="${boardDto.boardCreatedTime}"></td>
+    </tr>
+    <tr>
+        <th>hits</th>
+        <td th:text="${boardDto.boardHits}"></td>
+    </tr>
+    <tr>
+        <th>contents</th>
+        <td th:text="${boardDto.boardContents}"></td>
+    </tr>
+    <!--<tr th:if="${board.fileAttached == 1}">
+        <th>image</th>
+        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt=""></td>
+    </tr>-->
+</table>
+    <input class="btn btn-primary" type="button" value="수정 페이지" onclick="updatePage();">
+    <button class="btn btn-primary" onclick="deleteAction()">삭제</button>
+    <button class="btn btn-primary" onclick="listPage()">목록 페이지</button>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
-      function update_board_page(){
-          location.href = '/board/boardUpdate';
-      }
+        const updatePage = () => {
+            location.href = '/board/boardUpdate/[[${boardDto.id}]]';
+        }
+
+        const listPage = () =>{
+            location.href = '/board/boardList';
+        }
+
+        const deleteAction = () => {
+            location.href = '/board/boardDeleteAction';
+        }
+
     </script>
 </html>
