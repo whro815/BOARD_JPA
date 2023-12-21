@@ -77,21 +77,20 @@ public class BoardController {
     /*
      * 게시판 수정 액션
      * */
-    @PostMapping("/boardUpdateAction.do")
-    public String boardUpdateAction(@ModelAttribute("boardForm") BoardDto boardDto, Model model){
+    @PostMapping("/boardUpdate")
+    public String boardUpdateAction(@ModelAttribute BoardDto boardDto, Model model){
         boardService.update(boardDto);
         model.addAttribute("boardDto", boardDto);
-        return "redirect:"+ "/boardDetail/"+boardDto.getId();
+        return "redirect:"+ "/board/boardDetail/"+boardDto.getId();
     }
 
 
     /*
      * 게시판 삭제 액션
      * */
-    @PostMapping("/boardDeleteAction.do/{id}")
+    @GetMapping("/boardDelete/{id}")
     public String boardDeleteAction(@PathVariable Long id, Model model){
-        BoardDto boardDto = boardService.findById(id);
-
+        boardService.delete(id);
         return "redirect:" + "/board/boardList";
     }
 

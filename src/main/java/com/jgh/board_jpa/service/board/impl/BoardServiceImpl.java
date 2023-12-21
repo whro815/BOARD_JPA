@@ -66,8 +66,12 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public BoardDto update(BoardDto boardDto) {
-        boardRepository.save(boardDto.ToUpdateEntity());
+        boardRepository.save(boardDto.ToUpdateEntity(boardDto));
         return this.findById(boardDto.getId());
     }
 
+    @Override
+    public void delete(Long id) {
+        boardRepository.deleteById(id);
+    }
 }

@@ -8,15 +8,15 @@
 </head>
 <body>
 
-    <form id="boardForm" name="boardForm" th:action="@{boardUpdateAction.do}" method="post">
+    <form id="boardForm" name="boardForm" action="/board/boardUpdate" method="post">
         <input type="hidden" id="id" name="id" th:value="${boardDto.id}">
         작성자 : <input type="text" id="boardWriter" name="boardWriter" th:value="${boardDto.boardWriter}"><br>
         게시판 비밀번호 : <input type="text" id="boardPass" name="boardPass"><br>
         게시글 : <input type="text" id="boardTitle" name="boardTitle" th:value="${boardDto.boardTitle}"><br>
         게시 내용: <textarea type="text" id="boardContents" name="boardContents"
                                         cols="30" rows="20" th:text="${boardDto.boardContents}"></textarea><br>
+        <input type="button"value="수정" onclick="boardUpdateAction();">
     </form>
-    <button type="button" onclick="boardUpdateAction();">수정</button>
 
 
 </body>

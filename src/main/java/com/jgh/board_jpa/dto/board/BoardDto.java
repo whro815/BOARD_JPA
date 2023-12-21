@@ -23,9 +23,6 @@ public class BoardDto {
     private LocalDateTime boardUpdatedTime;  // 게시판 수정 시간
 
 
-    public BoardDto(Long id){
-        this.id = id;
-    }
 
 /*    @Builder
     public BoardDto(Long id, String boardWriter,
@@ -52,14 +49,14 @@ public class BoardDto {
                 .build();
     }
 
-    public Board ToUpdateEntity(){        // 엔티티에게
+    public Board ToUpdateEntity(BoardDto boardDto){        // 엔티티에게
         return Board.builder()
-                .id(BoardDto.builder().id)
-                .boardWriter(this.boardWriter)
-                .boardTitle(this.boardTitle)
-                .boardContents(this.boardContents)
-                .boardPass(this.boardPass)
-                .boardHits(0)
+                .id(boardDto.getId())
+                .boardWriter(boardDto.getBoardWriter())
+                .boardTitle(boardDto.getBoardTitle())
+                .boardContents(boardDto.getBoardContents())
+                .boardPass(boardDto.getBoardPass())
+                .boardHits(boardDto.getBoardHits())
                 .build();
     }
 

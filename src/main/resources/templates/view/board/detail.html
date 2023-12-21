@@ -53,7 +53,9 @@
         }
 
         const deleteAction = () => {
-            location.href = '/board/boardDeleteAction';
+            alert("삭제했습니다.");
+            const id = [[${boardDto.id}]];
+            location.href = '/board/boardDelete/' + id;
         }
 
     </script>
