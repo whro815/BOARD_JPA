@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name="board_table")
 @Table
@@ -34,6 +36,16 @@ public class Board extends Base{
     @Column
     private int boardHits;
 
+    @Column
+    private int fileAttached;   // 1 or 0
+
+    @OneToMany(mappedBy = "board"
+            , cascade = CascadeType.REMOVE
+            , orphanRemoval = true
+            , fetch = FetchType.LAZY)
+    private List<BoardFile> boardFileList = new ArrayList<>();
+
+
     public BoardDto ToBoardDto(Board board){   // dto 에게
         return BoardDto.builder()
                 .id(board.getId())
@@ -44,6 +56,9 @@ public class Board extends Base{
                 .boardHits(board.getBoardHits())
                 .boardCreatedTime(board.getCreatedTime())
                 .boardUpdatedTime(board.getUpdatedTime())
+                .fileAttached(board.getFileAttached())
+                .orgFileName(board.getBoardFileList().get(0).getOriginalFileName())
+                .storedFileName(board.getBoardFileList().get(0).getStoredFileName())
                 .build();
     }
 

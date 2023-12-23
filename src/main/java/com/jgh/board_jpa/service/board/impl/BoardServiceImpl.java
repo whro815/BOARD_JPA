@@ -13,7 +13,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,8 +33,30 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional
     @Override
-    public void save(BoardDto boardDto) {
-        boardRepository.save(boardDto.ToEntity()); //매개변수를 엔티티 리턴
+    public void save(BoardDto boardDto) throws IOException {
+
+        if(boardDto.getBoardFile().isEmpty()){
+            //첨부 파일 없음
+            boardRepository.save(boardDto.ToEntity()); //매개변수를 엔티티 리턴
+        } else {
+            /*
+             * // 첨부 파일 있음.
+             * 1. DTO에 담긴 파일을 꺼냄
+             * 2. 파일의 이름 가져옴
+             * 3. 서버 저장용 이름을 만듦
+             * 4. 저장 경로 설정
+             * 5. 해당 경로에 파일 저장
+             * 6. board_table에 해당 데이터 save 처리
+             * 7. board_file_table에 해당 데이터 save 처리
+             * */
+            MultipartFile file = boardDto.getBoardFile(); // 1.
+            String orgFileName = file.getOriginalFilename(); // 2.
+            String storedFileName = System.currentTimeMillis() + "_" + orgFileName; // 3.
+            String savePath = "D:/jgh/BOARD_JPA_FILE"+ storedFileName; // 4.
+            /* "/Users/사용자이름/BOARD_JPA_FILE/" + storedFileName; */
+            file.transferTo(new File(savePath));    // 5.
+        }
+
     }
 
 
@@ -54,6 +79,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public BoardDto findById(Long id) {
         Optional<Board> optionalBoard = boardRepository.findById(id);
 

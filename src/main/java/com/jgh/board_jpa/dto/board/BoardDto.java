@@ -1,8 +1,10 @@
 package com.jgh.board_jpa.dto.board;
 
 import com.jgh.board_jpa.domain.entity.Board;
+import com.jgh.board_jpa.domain.entity.BoardFile;
 import lombok.*;
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +25,11 @@ public class BoardDto {
     private LocalDateTime boardCreatedTime;  // 게시판 생성 시간
     private LocalDateTime boardUpdatedTime;  // 게시판 수정 시간
 
+    private MultipartFile boardFile;    //  insert.html -> Controller 파일 담는 용도
+    private String orgFileName;         //  원본 파일 이름
+    private String storedFileName;      //  서버 저장 파일 이름
+    private int fileAttached;           //  파일 첨부 여부(첨부 1, 미첨부 0)
+
     public BoardDto(Long id, String boardWriter, String boardTitle, int boardHits, LocalDateTime boardCreatedTime) {
         this.id = id;
         this.boardWriter = boardWriter;
@@ -38,6 +45,7 @@ public class BoardDto {
                 .boardContents(this.boardContents)
                 .boardPass(this.boardPass)
                 .boardHits(0)
+                .fileAttached(0)
                 .build();
     }
 
@@ -51,6 +59,9 @@ public class BoardDto {
                 .boardHits(boardDto.getBoardHits())
                 .build();
     }
+
+
+
 
 
     /*

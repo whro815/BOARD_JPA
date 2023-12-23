@@ -8,12 +8,13 @@
 </head>
 <body>
 
-    <form id="boardForm" name="boardForm" th:action="@{insert}" method="post">
+    <form id="boardForm" name="boardForm" th:action="@{insert}" method="post" enctype="multipart/form-data">
         작성자 : <input type="text" id="boardWriter" name="boardWriter"><br>
         게시판 비밀번호 : <input type="text" id="boardPass" name="boardPass"><br>
         게시글 : <input type="text" id="boardTitle" name="boardTitle"><br>
         게시 내용: <textarea type="text" id="boardContents" name="boardContents"
                                         cols="30" rows="20"></textarea><br>
+        파일 등록<input type="file" name="boardFile">
          <input type="submit" value="작성"><br>
     </form>
 

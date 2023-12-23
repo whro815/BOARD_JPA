@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -49,7 +50,7 @@ public class BoardController {
      * */
     @PostMapping("/insert")
     public String boardInsertAction(Model model,
-                                    @ModelAttribute BoardDto boardDto){
+                                    @ModelAttribute BoardDto boardDto) throws IOException {
         log.info("boardDto == "+ boardDto.ToEntity());
         boardService.save(boardDto);
         return "redirect:" + "/board/list";
