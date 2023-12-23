@@ -37,6 +37,7 @@ public class BoardServiceImpl implements BoardService {
 
         if(boardDto.getBoardFile().isEmpty()){
             //첨부 파일 없음
+            boardDto.setFileAttached(0);
             boardRepository.save(boardDto.ToEntity()); //매개변수를 엔티티 리턴
         } else {
             /*
@@ -49,6 +50,8 @@ public class BoardServiceImpl implements BoardService {
              * 6. board_table에 해당 데이터 save 처리
              * 7. board_file_table에 해당 데이터 save 처리
              * */
+            boardDto.setFileAttached(1);
+
             MultipartFile file = boardDto.getBoardFile(); // 1.
             String orgFileName = file.getOriginalFilename(); // 2.
             String storedFileName = System.currentTimeMillis() + "_" + orgFileName; // 3.

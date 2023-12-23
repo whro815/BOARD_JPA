@@ -45,7 +45,7 @@ public class BoardDto {
                 .boardContents(this.boardContents)
                 .boardPass(this.boardPass)
                 .boardHits(0)
-                .fileAttached(0)
+                .fileAttached(this.fileAttached)
                 .build();
     }
 
@@ -59,9 +59,6 @@ public class BoardDto {
                 .boardHits(boardDto.getBoardHits())
                 .build();
     }
-
-
-
 
 
     /*
