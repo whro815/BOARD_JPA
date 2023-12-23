@@ -11,7 +11,7 @@
 5. Spring Data JPA
 6. Thymeleaf
 
-##게시판 기능 v.1.1( 2023-12-21)
+##게시판 기능 v.1.2 (2023-12-22)
 1. 게시판 (/board)
    1. 등록 (/insert)
    2. 수정 (/update/{id})
@@ -19,5 +19,5 @@
    4. 목록 (/list)
    5. 조회 (/detail/{id})
       1. 조회수 ++
-
+   6. 페이징 조회 (/paging)
 

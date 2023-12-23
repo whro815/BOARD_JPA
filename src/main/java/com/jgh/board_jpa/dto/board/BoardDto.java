@@ -2,13 +2,14 @@ package com.jgh.board_jpa.dto.board;
 
 import com.jgh.board_jpa.domain.entity.Board;
 import lombok.*;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 
 @Setter
 @Getter
-@NoArgsConstructor      // 기본 생성자
 @Builder
+@NoArgsConstructor      // 기본 생성자
 @AllArgsConstructor     // 모든 필드를 매개변수로 하는 생성자
 public class BoardDto {
 
@@ -22,22 +23,13 @@ public class BoardDto {
     private LocalDateTime boardCreatedTime;  // 게시판 생성 시간
     private LocalDateTime boardUpdatedTime;  // 게시판 수정 시간
 
-
-
-/*    @Builder
-    public BoardDto(Long id, String boardWriter,
-                    String boardTitle, String boardContents,
-                    String boardPass, int boardHits,
-                    LocalDateTime boardCreateTime, LocalDateTime boardUpdateTime) {
+    public BoardDto(Long id, String boardWriter, String boardTitle, int boardHits, LocalDateTime boardCreatedTime) {
         this.id = id;
         this.boardWriter = boardWriter;
         this.boardTitle = boardTitle;
-        this.boardContents = boardContents;
-        this.boardPass = boardPass;
         this.boardHits = boardHits;
-        this.boardCreateTime = boardCreateTime;
-        this.boardUpdateTime = boardUpdateTime;
-    }*/
+        this.boardCreatedTime = boardCreatedTime;
+    }
 
     public Board ToEntity(){        // 엔티티에게
         return Board.builder()
@@ -60,19 +52,19 @@ public class BoardDto {
                 .build();
     }
 
-    /* @Builder
-    public BoardDto(Long boardSeqNo, String boardTitle, String boardContents, String boardDt) {
-        this.boardSeqNo = boardSeqNo;
-        this.boardTitle = boardTitle;
-        this.boardContents = boardContents;
-        this.boardDt = boardDt;
-    }
 
-    public BoardDao ToEntity(){
-        return BoardDao.builder()
-                .boardTitle(boardTitle)
-                .boardContents(boardContents)
-                .build();
-    }*/
+    /*
+    *  page 메서드 기능 확인
+    * */
+    public static void pageDataWrite(Page<Board> boardEntities){
+        System.out.println("요청 페이지에 해당하는 글 = " + boardEntities.getContent());
+        System.out.println("전체 글갯수 = " + boardEntities.getTotalElements());
+        System.out.println("DB로 요청한 페이지 번호 = " + boardEntities.getNumber());
+        System.out.println("전체 페이지 갯수 = " + boardEntities.getTotalPages());
+        System.out.println("한 페이지에 보여지는 글 갯수 = " + boardEntities.getSize());
+        System.out.println("이전 페이지 존재 여부 = " + boardEntities.hasPrevious());
+        System.out.println("첫 페이지 여부 = " + boardEntities.isFirst());
+        System.out.println("마지막 페이지 여부 = " + boardEntities.isLast());
+    }
 
 }

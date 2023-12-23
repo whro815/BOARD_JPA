@@ -8,36 +8,37 @@
 </head>
 <body>
 
-<table>
-    <tr>
-        <th>id</th>
-        <td th:text="${boardDto.id}"></td>
-    </tr>
-    <tr>
-        <th>title</th>
-        <td th:text="${boardDto.boardTitle}"></td>
-    </tr>
-    <tr>
-        <th>writer</th>
-        <td th:text="${boardDto.boardWriter}"></td>
-    </tr>
-    <tr>
-        <th>date</th>
-        <td th:text="${boardDto.boardCreatedTime}"></td>
-    </tr>
-    <tr>
-        <th>hits</th>
-        <td th:text="${boardDto.boardHits}"></td>
-    </tr>
-    <tr>
-        <th>contents</th>
-        <td th:text="${boardDto.boardContents}"></td>
-    </tr>
-    <!--<tr th:if="${board.fileAttached == 1}">
-        <th>image</th>
-        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt=""></td>
-    </tr>-->
-</table>
+        <table>
+            <tr>
+                <th>id</th>
+                <td th:text="${boardDto.id}"></td>
+            </tr>
+            <tr>
+                <th>title</th>
+                <td th:text="${boardDto.boardTitle}"></td>
+            </tr>
+            <tr>
+                <th>writer</th>
+                <td th:text="${boardDto.boardWriter}"></td>
+            </tr>
+            <tr>
+                <th>date</th>
+                <td th:text="${boardDto.boardCreatedTime}"></td>
+            </tr>
+            <tr>
+                <th>hits</th>
+                <td th:text="${boardDto.boardHits}"></td>
+            </tr>
+            <tr>
+                <th>contents</th>
+                <td th:text="${boardDto.boardContents}"></td>
+            </tr>
+            <!--<tr th:if="${board.fileAttached == 1}">
+                <th>image</th>
+                <td><img th:src="@{|/upload/${board.storedFileName}|}" alt=""></td>
+            </tr>-->
+        </table>
+
     <input class="btn btn-primary" type="button" value="수정 페이지" onclick="updatePage();">
     <button class="btn btn-primary" onclick="deleteAction()">삭제</button>
     <button class="btn btn-primary" onclick="listPage()">목록 페이지</button>
@@ -49,7 +50,9 @@
         }
 
         const listPage = () =>{
-            location.href = '/board/list';
+            // location.href = '/board/list';
+            const page = [[${page}]]
+            location.href = '/board/paging?page='+page;
         }
 
         const deleteAction = () => {
