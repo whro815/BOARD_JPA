@@ -58,6 +58,8 @@ public class BoardServiceImpl implements BoardService {
             String savePath = "D:/jgh/BOARD_JPA_FILE"+ storedFileName; // 4.
             /* "/Users/사용자이름/BOARD_JPA_FILE/" + storedFileName; */
             file.transferTo(new File(savePath));    // 5.
+            // 2023 12 27 여기서 부터 작업 필요
+
         }
 
     }

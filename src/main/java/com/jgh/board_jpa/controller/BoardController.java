@@ -51,7 +51,7 @@ public class BoardController {
     @PostMapping("/insert")
     public String boardInsertAction(Model model,
                                     @ModelAttribute BoardDto boardDto) throws IOException {
-        log.info("boardDto == "+ boardDto.ToEntity());
+        log.info("insert == "+ boardDto.ToEntity());
         boardService.save(boardDto);
         return "redirect:" + "/board/list";
     }

@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor     // 모든 필드를 매개변수로 하는 생성자
-public class Board extends Base{
+public class Board extends Base {
 
     @Id     // pk 컬럼
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
@@ -46,20 +46,38 @@ public class Board extends Base{
     private List<BoardFile> boardFileList = new ArrayList<>();
 
 
-    public BoardDto ToBoardDto(Board board){   // dto 에게
-        return BoardDto.builder()
-                .id(board.getId())
-                .boardWriter(board.getBoardWriter())
-                .boardPass(board.getBoardPass())
-                .boardTitle(board.getBoardTitle())
-                .boardContents(board.getBoardContents())
-                .boardHits(board.getBoardHits())
-                .boardCreatedTime(board.getCreatedTime())
-                .boardUpdatedTime(board.getUpdatedTime())
-                .fileAttached(board.getFileAttached())
-                .orgFileName(board.getBoardFileList().get(0).getOriginalFileName())
-                .storedFileName(board.getBoardFileList().get(0).getStoredFileName())
-                .build();
-    }
+    public BoardDto ToBoardDto(Board board) {   // dto 에게
 
+        if (board.getFileAttached() == 0) {
+            //첨부 파일 없음
+            return BoardDto.builder()
+                    .id(board.getId())
+                    .boardWriter(board.getBoardWriter())
+                    .boardPass(board.getBoardPass())
+                    .boardTitle(board.getBoardTitle())
+                    .boardContents(board.getBoardContents())
+                    .boardHits(board.getBoardHits())
+                    .boardCreatedTime(board.getCreatedTime())
+                    .boardUpdatedTime(board.getUpdatedTime())
+                    .fileAttached(board.getFileAttached())
+                    .build();
+        } else {
+            //첨부 파일 있음
+            return BoardDto.builder()
+                    .id(board.getId())
+                    .boardWriter(board.getBoardWriter())
+                    .boardPass(board.getBoardPass())
+                    .boardTitle(board.getBoardTitle())
+                    .boardContents(board.getBoardContents())
+                    .boardHits(board.getBoardHits())
+                    .boardCreatedTime(board.getCreatedTime())
+                    .boardUpdatedTime(board.getUpdatedTime())
+                    .fileAttached(board.getFileAttached())
+                    .orgFileName(board.getBoardFileList().get(0).getOriginalFileName())
+                    .storedFileName(board.getBoardFileList().get(0).getStoredFileName())
+                    .build();
+        }
+
+
+    }
 }

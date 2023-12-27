@@ -25,6 +25,7 @@ public class BoardDto {
     private LocalDateTime boardCreatedTime;  // 게시판 생성 시간
     private LocalDateTime boardUpdatedTime;  // 게시판 수정 시간
 
+    // 다중 private List<MultipartFile> boardFile;
     private MultipartFile boardFile;    //  insert.html -> Controller 파일 담는 용도
     private String orgFileName;         //  원본 파일 이름
     private String storedFileName;      //  서버 저장 파일 이름
