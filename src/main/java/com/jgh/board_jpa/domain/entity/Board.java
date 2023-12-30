@@ -45,6 +45,13 @@ public class Board extends Base {
             , fetch = FetchType.LAZY)
     private List<BoardFile> boardFileList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "board"
+            , cascade = CascadeType.REMOVE
+            , orphanRemoval = true
+            , fetch = FetchType.LAZY)
+    private List<BoardFile> commentList = new ArrayList<>();
+
+
 
     public BoardDto ToBoardDto(Board board) {   // dto 에게
 
