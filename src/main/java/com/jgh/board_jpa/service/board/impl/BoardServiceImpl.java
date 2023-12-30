@@ -58,22 +58,22 @@ public class BoardServiceImpl implements BoardService {
 
             boardDto.setFileAttached(1);
 
-            MultipartFile file = boardDto.getBoardFile();       // 1.
-            String orgFileName = file.getOriginalFilename();    // 2.
-            String storedFileName = System.currentTimeMillis() + "_" + orgFileName; // 3.
-            String savePath = "D:/jgh/BOARD_JPA_FILE/"+ storedFileName; // 4.
-            /* "/Users/사용자이름/BOARD_JPA_FILE/" + storedFileName; */
-            file.transferTo(new File(savePath));                // 5.
-
             Board boardEntity = boardDto.ToEntity();
             Long savedId = boardRepository.save(boardEntity).getId();
             Board board = boardRepository.findById(savedId).get();
 
-            BoardFile boardFileEntity = BoardFile.ToBoardFile(board, orgFileName, storedFileName);
-            boardFileRepository.save(boardFileEntity);
+            for (MultipartFile file : boardDto.getBoardFile()) {  // 다중
+                // MultipartFile file = boardDto.getBoardFile();                        // 1. 단일
+                String orgFileName = file.getOriginalFilename();                        // 2.
+                String storedFileName = System.currentTimeMillis() + "_" + orgFileName; // 3.
+                String savePath = "D:/jgh/BOARD_JPA_FILE/"+ storedFileName;             // 4.
+                /* "/Users/사용자이름/BOARD_JPA_FILE/" + storedFileName; */
 
+                file.transferTo(new File(savePath));                                    // 5.
+                BoardFile boardFileEntity = BoardFile.ToBoardFile(board, orgFileName, storedFileName);
+                boardFileRepository.save(boardFileEntity);
+            }
         }
-
     }
 
 

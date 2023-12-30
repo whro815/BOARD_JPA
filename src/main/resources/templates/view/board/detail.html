@@ -34,7 +34,9 @@
             </tr>
             <tr th:if="${boardDto.fileAttached == 1}">
                 <th>image</th>
-                <td><img th:src="@{|/upload/${boardDto.storedFileName}|}" th:alt="${boardDto.orgFileName}"></td>
+                <td th:each="fileName: ${boardDto.storedFileName}">
+                    <img th:src="@{|/upload/${fileName}|}" th:alt="${boardDto.orgFileName}">
+                </td>
             </tr>
         </table>
 

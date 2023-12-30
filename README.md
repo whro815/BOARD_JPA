@@ -11,7 +11,7 @@
 5. Spring Data JPA
 6. Thymeleaf
 
-##게시판 기능 (2023-12-23)
+##게시판 기능
 1. 게시판 (/board)
    1. 등록 (/insert)
    2. 수정 (/update/{id})
@@ -24,4 +24,5 @@
       1. 단일 파일 첨부
          1. Config
          2. BoardFileEntity
+      2. 다중 파일 처리
 

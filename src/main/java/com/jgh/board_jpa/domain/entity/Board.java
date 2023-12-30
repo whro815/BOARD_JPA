@@ -62,6 +62,15 @@ public class Board extends Base {
                     .fileAttached(board.getFileAttached())
                     .build();
         } else {
+
+            List<String> originalFileNameList = new ArrayList<>();
+            List<String> storedFileNameList = new ArrayList<>();
+
+            for (BoardFile boardFile: board.getBoardFileList()) {   // 다중
+                originalFileNameList.add(boardFile.getOriginalFileName());
+                storedFileNameList.add(boardFile.getOriginalFileName());
+            }
+
             //첨부 파일 있음
             return BoardDto.builder()
                     .id(board.getId())
@@ -73,8 +82,8 @@ public class Board extends Base {
                     .boardCreatedTime(board.getCreatedTime())
                     .boardUpdatedTime(board.getUpdatedTime())
                     .fileAttached(board.getFileAttached())
-                    .orgFileName(board.getBoardFileList().get(0).getOriginalFileName())
-                    .storedFileName(board.getBoardFileList().get(0).getStoredFileName())
+                    .orgFileName(originalFileNameList)
+                    .storedFileName(storedFileNameList)
                     .build();
         }
 
