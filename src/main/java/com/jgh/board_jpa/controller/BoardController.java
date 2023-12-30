@@ -2,7 +2,9 @@ package com.jgh.board_jpa.controller;
 
 import com.jgh.board_jpa.domain.entity.Board;
 import com.jgh.board_jpa.dto.board.BoardDto;
+import com.jgh.board_jpa.dto.board.CommentDto;
 import com.jgh.board_jpa.service.board.BoardService;
+import com.jgh.board_jpa.service.comment.CommentService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -25,6 +27,8 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+
+    private final CommentService commentService;
 
     /*
      * 게시판 목록 페이지
@@ -65,6 +69,9 @@ public class BoardController {
 
         boardService.updateHits(id);
         BoardDto boardDto = boardService.findById(id);
+        List<CommentDto> commentList = commentService.findAll(id);
+
+        model.addAttribute("commentList", commentList);
         model.addAttribute("boardDto", boardDto);
         model.addAttribute("page", pageable.getPageNumber());
         return "view/board/detail";
