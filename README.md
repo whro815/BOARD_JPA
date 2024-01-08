@@ -27,3 +27,6 @@
          2. BoardFileEntity
       2. 다중 파일 처리
 
+## SWAGGER
+http://localhost:9090/swagger-ui/index.html
+
